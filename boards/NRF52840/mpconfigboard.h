@@ -29,7 +29,7 @@
 #define MICROPY_HW_MCU_NAME         "NRF52840"
 #define MICROPY_PY_SYS_PLATFORM     "nrf52840-feather"
 
-#define MICROPY_PY_MACHINE_BITSTREAM (1)
+//#define MICROPY_PY_MACHINE_BITSTREAM (1) TODO: Fix machine_bitstream implementation for NEOPIXEL to work...
 #define MICROPY_PY_MACHINE_UART      (1)
 #define MICROPY_PY_MACHINE_HW_PWM    (1)
 #define MICROPY_PY_MACHINE_HW_SPI    (1)

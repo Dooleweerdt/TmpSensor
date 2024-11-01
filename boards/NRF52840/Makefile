@@ -13,7 +13,7 @@ MICROPY_TOP ?= $(abspath ../../micropython)
 ################################################################################
 # Define your targets here.
 
-all: firmware
+all: firmware uf2
 
 ################################################################################
 # Items below this line do not generally need to be changed.
@@ -36,6 +36,13 @@ firmware:
 		BOARD=$(BOARD) \
 		BOARD_DIR=$(BOARD_DIR) \
 		BUILD=$(BUILD)
+
+### Create a .uf2 file from the .hex file
+uf2: $(BUILD)/firmware.uf2
+
+$(BUILD)/firmware.uf2: $(BUILD)/firmware.hex
+	$(ECHO) "Create $@"
+	$(PYTHON) $(MICROPY_TOP)/tools/uf2conv.py -f 0xADA52840 -c -o "$(BUILD)/firmware.uf2" $^
 
 deploy:
 	$(PYTHON) $(MICROPY_TOP)/tools/pydfu.py -u $(BUILD)/firmware.dfu
