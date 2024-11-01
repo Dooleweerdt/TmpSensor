@@ -24,6 +24,12 @@ BUILD = $(abspath build)
 include $(MICROPY_TOP)/py/mkenv.mk
 include $(MICROPY_TOP)/py/mkrules.mk
 
+mpy:
+	$(Q)$(MAKE) -C ../../micropython/mpy-cross	
+
+port_submodules:
+	$(Q)$(MAKE) -C $(MICROPY_TOP)/ports/nrf submodules
+
 firmware:
 	$(Q)$(MAKE) -C $(MICROPY_TOP)/ports/nrf \
 		PROJECT_TOP=$(abspath ../..) \
